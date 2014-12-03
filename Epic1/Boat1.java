@@ -14,6 +14,28 @@ public class Boat1 extends Actor
      */
     public void act() 
     {
-        // Add your action code here.
+        setLocation(getX(), getY()+ boatSpeed);
+        
+        touching();
     }    
+    
+    private int boatSpeed = -1;
+    
+    public void touching()
+    {
+        if(isTouching(Map.class) && checkTransparancy() == true ){
+            turn(3);
+            
+        }
+        
+    }
+    
+    public boolean checkTransparancy()
+    {
+        
+        
+    }
+    
 }
+
+
