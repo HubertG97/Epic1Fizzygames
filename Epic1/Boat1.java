@@ -14,14 +14,63 @@ public class Boat1 extends Actor
      */
     public void act() 
     {
-        setLocation(getX(), getY()+ boatSpeed);
         
-        touching();
+       checkKeys();
+       movement();
+      
+       //touching();
     }    
     
-    private int boatSpeed = -1;
+    // values
+    private int boatSpeed = 2;
+    private int turnSpeedLeft = -5;
+    private int turnSpeedRight = 5;
+    private int breakPower = 1;
     
-    public void touching()
+    
+    public void checkKeys()
+    {
+        if(Greenfoot.isKeyDown("left")){
+            turnLeft();
+        }
+        
+        else if (Greenfoot.isKeyDown("right")){
+            turnRight();
+        }
+        
+        if(Greenfoot.isKeyDown("down")){
+            slowDown();
+        }
+        
+        else {
+            boatSpeed = 2;
+        }
+    }
+    
+    
+    public void slowDown()
+    {
+        boatSpeed = boatSpeed - breakPower;
+        if (boatSpeed <= 0){
+            boatSpeed = 1;
+        }
+    }
+    
+    public void turnLeft()
+    {
+        turn(turnSpeedLeft);
+    }
+    
+    public void turnRight()
+    {
+        turn(turnSpeedRight);
+    }
+   
+    public void movement()
+    {
+        move(boatSpeed);
+    }
+   /* public void touching()
     {
         if(isTouching(Map.class) && checkTransparancy() == true ){
             turn(3);
@@ -34,7 +83,7 @@ public class Boat1 extends Actor
     {
         
         
-    }
+    } */
     
 }
 
